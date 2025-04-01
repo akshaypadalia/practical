@@ -6,7 +6,7 @@
     @csrf
     <div class="mb-3">
         <label>Name</label>
-        <input type="text" id="name" name="name" class="form-control" required>
+        <input type="text" id="name" name="name" class="form-control" value="{{old('name')}}" required>
         @if ($errors->has('name'))
             <div class="alert alert-danger">
                 {{ $errors->first('name') }}
@@ -15,7 +15,7 @@
     </div>
     <div class="mb-3">
         <label>Price</label>
-        <input type="number" id="price" name="price" class="form-control" required>
+        <input type="number" id="price" name="price" class="form-control"  value="{{old('name')}}" required>
         @if ($errors->has('price'))
             <div class="alert alert-danger">
                 {{ $errors->first('price') }}
@@ -26,7 +26,7 @@
         <label>Select Plans</label>
         <select name="selected_plan[]" class="form-control" multiple>
             @foreach($plans as $id => $name)
-                <option value="{{ $id }}">{{ $name }}</option>
+                <option {{ in_array($id, old('selected_plan',[])) ? 'selected="selected"' : '' }} value="{{ $id }}">{{ $name }}</option>
             @endforeach
         </select>
         @if ($errors->has('selected_plan'))

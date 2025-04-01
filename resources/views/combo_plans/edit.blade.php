@@ -7,7 +7,7 @@
     @method('PUT')
     <div class="mb-3">
         <label>Name</label>
-        <input type="text" name="name" class="form-control" value="{{$comboPlan->name}}" required>
+        <input type="text" name="name" class="form-control" value="{{ old('name', $comboPlan->name) }}" required>
         @if ($errors->has('name'))
             <div class="alert alert-danger">
                 {{ $errors->first('name') }}
@@ -16,7 +16,7 @@
     </div>
     <div class="mb-3">
         <label>Price</label>
-        <input type="number" name="price" class="form-control" value="{{$comboPlan->price}}" required>
+        <input type="number" name="price" class="form-control" value="{{ old('price', $comboPlan->price) }}" required>
         @if ($errors->has('price'))
             <div class="alert alert-danger">
                 {{ $errors->first('price') }}
@@ -27,7 +27,7 @@
         <label>Select Plans</label>
         <select name="selected_plan[]" class="form-control" multiple>
             @foreach($plans as $id => $name)
-                <option {{ in_array($id, $comboPlan->plan_ids) ? 'selected="selected"' : '' }} value="{{ $id }}">{{ $name }}</option>
+                <option {{ in_array($id, old('selected_plan', $comboPlan->plan_ids)) ? 'selected="selected"' : '' }} value="{{ $id }}">{{ $name }}</option>
             @endforeach
         </select>
         @if ($errors->has('selected_plan'))

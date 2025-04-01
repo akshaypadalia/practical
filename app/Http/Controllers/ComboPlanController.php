@@ -13,7 +13,7 @@ class ComboPlanController extends Controller
         return view('combo_plans.index',compact('comboPlans'));
     }
     public function create(){
-        $plans = Plan::pluck('name', 'id');
+        $plans = Plan::orderBy('name')->pluck('name', 'id');
         return view('combo_plans.create',compact('plans'));
     }
     public function store(Request $request){
@@ -35,7 +35,7 @@ class ComboPlanController extends Controller
     }
 
     public function edit(ComboPlan $comboPlan){
-        $plans = Plan::pluck('name', 'id');
+        $plans = Plan::orderBy('name')->pluck('name', 'id');
         return view('combo_plans.edit',compact('comboPlan', 'plans'));
     }
 
